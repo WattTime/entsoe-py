@@ -18,9 +18,9 @@ from .parsers import parse_prices, parse_loads, parse_generation, \
 from entsoe.exceptions import InvalidPSRTypeError, InvalidBusinessParameterError
 
 __title__ = "entsoe-py"
-__version__ = "0.2.14"
-__author__ = "EnergieID.be"
-__license__ = "MIT"
+__version__ = "1.0.0"
+__author__ = "EnergieID.be & WattTime.org"
+__license__ = "WattTime proprietary"
 
 URL = 'https://transparency.entsoe.eu/api'
 
@@ -1257,6 +1257,26 @@ class EntsoePandasClient(EntsoeRawClient):
                 continue
             im.name = neighbour
             imports.append(im)
+        df = pd.concat(imports, axis=1)
+        df = df.loc[:, (df != 0).any(axis=0)]  # drop columns that contain only zero's
+        df = df.tz_convert(TIMEZONE_MAPPINGS[country_code])
+        df = df.truncate(before=start, after=end)
+        return df
+
+    def query_export(self, country_code: str, start: pd.Timestamp, end: pd.Timestamp) -> pd.DataFrame:
+        """
+        Adds together all outgoing cross-border flows from a country
+        The neighbours of a country are given by the NEIGHBOURS mapping
+        """
+        exports = []
+        for neighbour in NEIGHBOURS[country_code]:
+            try:
+                ex = self.query_crossborder_flows(country_code_from=country_code, country_code_to=neighbour, end=end,
+                                                  start=start, lookup_bzones=True)
+            except NoMatchingDataError:
+                continue
+            ex.name = neighbour
+            exports.append(ex)
         df = pd.concat(imports, axis=1)
         df = df.loc[:, (df != 0).any(axis=0)]  # drop columns that contain only zero's
         df = df.tz_convert(TIMEZONE_MAPPINGS[country_code])
