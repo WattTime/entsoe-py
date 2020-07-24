@@ -1277,7 +1277,7 @@ class EntsoePandasClient(EntsoeRawClient):
                 continue
             ex.name = neighbour
             exports.append(ex)
-        df = pd.concat(imports, axis=1)
+        df = pd.concat(exports, axis=1)
         df = df.loc[:, (df != 0).any(axis=0)]  # drop columns that contain only zero's
         df = df.tz_convert(TIMEZONE_MAPPINGS[country_code])
         df = df.truncate(before=start, after=end)
