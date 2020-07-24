@@ -281,7 +281,7 @@ NEIGHBOURS = {
     'CH': ['AT', 'DE-AT-LU', 'DE-LU', 'FR', 'IT-NORD', 'IT-NORD-CH'],
     'AT': ['CH', 'CZ', 'DE-LU', 'HU', 'IT-NORD', 'SI'],
     'CZ': ['AT', 'DE-AT-LU', 'DE-LU', 'PL', 'SK'],
-    'GB': ['BE', 'FR', 'IE-SEM', 'NL'],
+    'GB': ['BE', 'FR', 'IE-SEM', 'NL', 'IE'],
     'NO-2': ['DK-1', 'NL', 'NO-5'],
     'HU': ['AT', 'HR', 'RO', 'RS', 'SK', 'UA'],
     'IT-NORD': ['CH', 'DE-AT-LU', 'FR', 'SI', 'AT', 'IT-CNOR'],
