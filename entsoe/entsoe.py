@@ -19,9 +19,9 @@ from .parsers import parse_prices, parse_loads, parse_generation, \
     parse_unavailabilities, parse_contracted_reserve, parse_imbalance_prices_zip
 
 __title__ = "entsoe-py"
-__version__ = "1.1.0"
-__author__ = "EnergieID.be & WattTime.org"
-__license__ = "WattTime proprietary"
+__version__ = "0.3.2"
+__author__ = "EnergieID.be"
+__license__ = "MIT"
 
 URL = 'https://transparency.entsoe.eu/api'
 
