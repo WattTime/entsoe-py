@@ -1542,23 +1542,30 @@ class EntsoePandasClient(EntsoeRawClient):
         df = df.truncate(before=start, after=end)
         return df
 
-    def query_export(self, country_code: str, start: pd.Timestamp, end: pd.Timestamp) -> pd.DataFrame:
+    def query_export(
+            self, country_code: str, 
+            start: pd.Timestamp, end: pd.Timestamp) -> pd.DataFrame:
         """
         Adds together all outgoing cross-border flows from a country
         The neighbours of a country are given by the NEIGHBOURS mapping
         """
+        area = lookup_area(country_code)
         exports = []
-        for neighbour in NEIGHBOURS[country_code]:
+        for neighbour in NEIGHBOURS[area.name]:
             try:
-                ex = self.query_crossborder_flows(country_code_from=country_code, country_code_to=neighbour, end=end,
-                                                  start=start, lookup_bzones=True)
+                ex = self.query_crossborder_flows(country_code_from=country_code,
+                                                  country_code_to=neighbour,
+                                                  end=end,
+                                                  start=start,
+                                                  lookup_bzones=True)
             except NoMatchingDataError:
                 continue
             ex.name = neighbour
             exports.append(ex)
         df = pd.concat(exports, axis=1)
-        df = df.loc[:, (df != 0).any(axis=0)]  # drop columns that contain only zero's
-        df = df.tz_convert(TIMEZONE_MAPPINGS[country_code])
+        # drop columns that contain only zero's
+        df = df.loc[:, (df != 0).any(axis=0)]
+        df = df.tz_convert(area.tz)
         df = df.truncate(before=start, after=end)
         return df
 
