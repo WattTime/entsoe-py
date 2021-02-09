@@ -312,3 +312,12 @@ NEIGHBOURS = {
     'IT_SICI': ['IT_ROSN', 'MT'],
     'MT': ['IT_SICI']
 }
+
+# neighbouring countries that have cross border flows
+COUNTRY_NEIGHBOURS = {
+    'NO': ['DK', 'FI', 'DE', 'NL', 'SE'],
+    'NL': ['BE', 'DK', 'DE', 'NO', 'GB'],
+    'BE': ['FR', 'DE', 'LU', 'NL', 'GB'],
+    'DE': ['AT', 'BE', 'CZ', 'DK', 'FR', 'LU', 'NL', 'NO', 'PL', 'SE', 'CH'],
+    'CH': ['AT', 'FR', 'DE', 'IT']
+}

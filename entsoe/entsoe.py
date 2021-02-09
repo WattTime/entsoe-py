@@ -12,7 +12,7 @@ from bs4 import BeautifulSoup
 
 from entsoe.exceptions import InvalidPSRTypeError, InvalidBusinessParameterError
 from .exceptions import NoMatchingDataError, PaginationError
-from .mappings import Area, NEIGHBOURS, lookup_area
+from .mappings import Area, COUNTRY_NEIGHBOURS, NEIGHBOURS, lookup_area
 from .misc import year_blocks, day_blocks
 from .parsers import parse_prices, parse_loads, parse_generation, \
     parse_installed_capacity_per_plant, parse_crossborder_flows, \
@@ -1543,7 +1543,7 @@ class EntsoePandasClient(EntsoeRawClient):
         return df
 
     def query_export(
-            self, country_code: str, 
+            self, country_code: str,
             start: pd.Timestamp, end: pd.Timestamp) -> pd.DataFrame:
         """
         Adds together all outgoing cross-border flows from a country
@@ -1584,4 +1584,37 @@ class EntsoePandasClient(EntsoeRawClient):
         data = {f'Generation': generation, f'Import': imports}
         df = pd.concat(data.values(), axis=1, keys=data.keys())
         df = df.truncate(before=start, after=end)
+        return df
+
+    def query_interchange(self, country_code: str, start: pd.Timestamp,
+                          end: pd.Timestamp) -> pd.DataFrame:
+        """
+        Returns all import and export cross border flows for a country. The
+        neighbours of a country are given by the COUNTRY_NEIGHBOURS mapping.
+        """
+        area = lookup_area(country_code)
+        interchange = []
+        for neighbour in COUNTRY_NEIGHBOURS[area.name]:
+            try:
+                ex = self.query_crossborder_flows(country_code_from=country_code,
+                                                  country_code_to=neighbour,
+                                                  end=end,
+                                                  start=start,
+                                                  lookup_bzones=False)
+            except NoMatchingDataError:
+                continue
+            try:
+                im = self.query_crossborder_flows(country_code_from=neighbour,
+                                                  country_code_to=country_code,
+                                                  end=end,
+                                                  start=start,
+                                                  lookup_bzones=False)
+            except NoMatchingDataError:
+                continue
+
+            ex.name = f'{country_code}->{neighbour}'
+            im.name = f'{neighbour}->{country_code}'
+            interchange.append(ex)
+            interchange.append(im)
+        df = pd.concat(interchange, axis=1)
         return df
