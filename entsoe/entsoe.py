@@ -1586,7 +1586,7 @@ class EntsoePandasClient(EntsoeRawClient):
         df = df.truncate(before=start, after=end)
         return df
 
-    def query_interchange(self, country_code: str, start: pd.Timestamp,
+    def query_country_interchange(self, country_code: str, start: pd.Timestamp,
                           end: pd.Timestamp) -> pd.DataFrame:
         """
         Returns all import and export cross border flows for a country. The
@@ -1617,4 +1617,5 @@ class EntsoePandasClient(EntsoeRawClient):
             interchange.append(ex)
             interchange.append(im)
         df = pd.concat(interchange, axis=1)
+        df.index.name = 'ts'
         return df
