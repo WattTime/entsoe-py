@@ -321,5 +321,7 @@ COUNTRY_NEIGHBOURS = {
     'DE': ['AT', 'BE', 'CZ', 'DK', 'FR', 'LU', 'NL', 'NO', 'PL', 'SE', 'CH'],
     'CH': ['AT', 'FR', 'DE', 'IT'],
     'GB': ['BE', 'FR', 'IE', 'NL'],
-    'AT': ['CZ', 'DE', 'HU', 'IT', 'SI', 'CH']
+    'AT': ['CZ', 'DE', 'HU', 'IT', 'SI', 'CH'],
+    'IE': ['GB'],
+    'FR': ['BE', 'DE', 'IT', 'ES', 'CH', 'GB']
 }
