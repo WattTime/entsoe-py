@@ -1587,35 +1587,40 @@ class EntsoePandasClient(EntsoeRawClient):
         return df
 
     def query_country_interchange(self, country_code: str, start: pd.Timestamp,
-                          end: pd.Timestamp) -> pd.DataFrame:
+                                  end: pd.Timestamp) -> pd.DataFrame:
         """
-        Returns all import and export cross border flows for a country. The
-        neighbours of a country are given by the COUNTRY_NEIGHBOURS mapping.
+        Returns net export (export - import) cross border flows for a
+        country. The neighbours of a country are given by the
+        COUNTRY_NEIGHBOURS mapping.
         """
         area = lookup_area(country_code)
         interchange = []
         for neighbour in COUNTRY_NEIGHBOURS[area.name]:
             try:
-                ex = self.query_crossborder_flows(country_code_from=country_code,
-                                                  country_code_to=neighbour,
-                                                  end=end,
-                                                  start=start,
-                                                  lookup_bzones=False)
+                ex = self.query_crossborder_flows(
+                        country_code_from=country_code,
+                        country_code_to=neighbour,
+                        end=end,
+                        start=start,
+                        lookup_bzones=False
+                        )
             except NoMatchingDataError:
                 continue
             try:
-                im = self.query_crossborder_flows(country_code_from=neighbour,
-                                                  country_code_to=country_code,
-                                                  end=end,
-                                                  start=start,
-                                                  lookup_bzones=False)
+                im = self.query_crossborder_flows(
+                        country_code_from=neighbour,
+                        country_code_to=country_code,
+                        end=end,
+                        start=start,
+                        lookup_bzones=False
+                        )
             except NoMatchingDataError:
                 continue
 
-            ex.name = f'{country_code}->{neighbour}'
-            im.name = f'{neighbour}->{country_code}'
-            interchange.append(ex)
-            interchange.append(im)
+            net_export = ex - im
+            net_export.name = neighbour
+            interchange.append(net_export)
+
         df = pd.concat(interchange, axis=1)
         df.index.name = 'ts'
         return df
