@@ -348,3 +348,13 @@ COUNTRY_NEIGHBOURS = {
     'CH': ['AT', 'FR', 'DE', 'IT'],
     'GB': ['BE', 'FR', 'IE', 'NL']
 }
+
+CA_NEIGHBOURS = COUNTRY_NEIGHBOURS.copy()
+CA_NEIGHBOURS.update({
+    'DK_CA': ['DE_50HZ', 'DE_TENNET', 'NL', 'NO', 'SE'],
+    'DE_50HZ': ['CZ', 'DK_CA', 'PL'],
+    'DE_AMPRION': ['BE', 'CH', 'FR', 'LU', 'NL'],
+    'DE_TENNET': ['AT', 'CZ', 'DK_CA', 'NL', 'NO', 'SE'],
+    'DE_TRANSNET': ['AT', 'CH', 'FR']
+})
+

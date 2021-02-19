@@ -12,7 +12,7 @@ from bs4 import BeautifulSoup
 
 from entsoe.exceptions import InvalidPSRTypeError, InvalidBusinessParameterError
 from .exceptions import NoMatchingDataError, PaginationError
-from .mappings import Area, COUNTRY_NEIGHBOURS, NEIGHBOURS, lookup_area
+from .mappings import Area, CA_NEIGHBOURS, NEIGHBOURS, lookup_area
 from .misc import year_blocks, day_blocks
 from .parsers import parse_prices, parse_loads, parse_generation, \
     parse_installed_capacity_per_plant, parse_crossborder_flows, \
@@ -1595,7 +1595,7 @@ class EntsoePandasClient(EntsoeRawClient):
         """
         area = lookup_area(country_code)
         interchange = []
-        for neighbour in COUNTRY_NEIGHBOURS[area.name]:
+        for neighbour in CA_NEIGHBOURS[area.name]:
             try:
                 ex = self.query_crossborder_flows(
                         country_code_from=country_code,
@@ -1624,3 +1624,4 @@ class EntsoePandasClient(EntsoeRawClient):
         df = pd.concat(interchange, axis=1)
         df.index.name = 'ts'
         return df
+
