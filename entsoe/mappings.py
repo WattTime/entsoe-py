@@ -78,6 +78,8 @@ class Area(enum.Enum):
     GR =            '10YGR-HTSO-----Y', 'Greece, IPTO BZ / CA/ MBA',                    'Europe/Athens',
     HU =            '10YHU-MAVIR----U', 'Hungary, MAVIR CA / BZ / MBA',                 'Europe/Budapest',
     IS =            'IS',               'Iceland',                                      'Atlantic/Reykjavik',
+    # Ireland (IE) is the country Republic of Ireland and coincides with
+    # the control area. IR_SEM is the island of Ireland which is a bidding zone
     IE_SEM =        '10Y1001A1001A59C', 'Ireland (SEM) BZ / MBA',                       'Europe/Dublin',
     IE =            '10YIE-1001A00010', 'Ireland, EirGrid CA',                          'Europe/Dublin',
     IT =            '10YIT-GRTN-----B', 'Italy, IT CA / MBA',                           'Europe/Rome',
@@ -108,6 +110,8 @@ class Area(enum.Enum):
     LU =            '10YLU-CEGEDEL-NQ', 'Luxembourg, CREOS CA',                         'Europe/Luxembourg',
     MT =            '10Y1001A1001A93C', 'Malta, Malta BZ / CA / MBA',                   'Europe/Malta',
     ME =            '10YCS-CG-TSO---S', 'Montenegro, CGES BZ / CA / MBA',               'Europe/Podgorica',
+    # GB corresponds to the island Great Britain which is a control area. For
+    # the country UK, use abbrev UK.
     GB =            '10YGB----------A', 'National Grid BZ / CA/ MBA',                   'Europe/London',
     UK =            'GB',               'Great Britain CTY',                            'Europe/London',
     NL =            '10YNL----------L', 'Netherlands, TenneT NL BZ / CA/ MBA',          'Europe/Amsterdam',
@@ -325,7 +329,7 @@ NEIGHBOURS = {
 # neighbouring countries that have cross border flows
 COUNTRY_NEIGHBOURS = {
     'AT': ['CZ', 'DE', 'HU', 'IT', 'SI', 'CH'],
-    'BE': ['FR', 'DE', 'LU', 'NL', 'GB'],
+    'BE': ['FR', 'DE', 'LU', 'NL', 'UK'],
     'BA': ['HR', 'ME', 'RS'],
     'BG': ['GR', 'MK', 'RO', 'RS', 'TR'],
     'HR': ['BA', 'HU', 'RS', 'SI'],
@@ -333,17 +337,17 @@ COUNTRY_NEIGHBOURS = {
     'DK': ['DE', 'NL', 'NO', 'SE'],
     'EE': ['FI', 'LV', 'RU'],
     'FI': ['EE', 'NO', 'RU', 'SE'],
-    'FR': ['BE', 'DE', 'IT', 'ES', 'CH', 'GB'],
+    'FR': ['BE', 'DE', 'IT', 'ES', 'CH', 'UK'],
     'GE': ['AM', 'AZ', 'RU', 'TR'],
     'DE': ['AT', 'BE', 'CZ', 'DK', 'FR', 'LU', 'NL', 'NO', 'PL', 'SE', 'CH'],
     'GR': ['AL', 'BG', 'IT', 'MK', 'TR'],
     'HU': ['AT', 'HR', 'RO', 'RS', 'SK', 'UA'],
-    'IE': ['GB'],
+    'IE': ['UK'],
     'IT': ['AT', 'FR', 'GR', 'MT', 'ME', 'SI', 'CH'],
     'LV': ['EE', 'LT', 'RU'],
     'LT': ['BY', 'LV', 'PL', 'RU', 'SE'],
     'ME': ['AL', 'BA', 'IT', 'XK', 'RS'],
-    'NL': ['BE', 'DK', 'DE', 'NO', 'GB'],
+    'NL': ['BE', 'DK', 'DE', 'NO', 'UK'],
     'NO': ['DK', 'FI', 'DE', 'NL', 'SE'],
     'PL': ['CZ', 'DE', 'LT', 'SK', 'SE', 'UA'],
     'PT': ['ES'],
@@ -355,7 +359,7 @@ COUNTRY_NEIGHBOURS = {
     'ES': ['FR', 'PT'],
     'SE': ['DK', 'FI', 'DE', 'LT', 'NO', 'PL'],
     'CH': ['AT', 'FR', 'DE', 'IT'],
-    'GB': ['BE', 'FR', 'IE', 'NL']
+    'UK': ['BE', 'FR', 'IE', 'NL']
 }
 
 CA_NEIGHBOURS = COUNTRY_NEIGHBOURS.copy()
