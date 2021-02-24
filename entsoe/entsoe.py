@@ -12,7 +12,7 @@ from bs4 import BeautifulSoup
 
 from entsoe.exceptions import InvalidPSRTypeError, InvalidBusinessParameterError
 from .exceptions import NoMatchingDataError, PaginationError
-from .mappings import Area, CA_NEIGHBOURS, NEIGHBOURS, lookup_area
+from .mappings import Area, NEIGHBOURS, lookup_area
 from .misc import year_blocks, day_blocks
 from .parsers import parse_prices, parse_loads, parse_generation, \
     parse_installed_capacity_per_plant, parse_crossborder_flows, \
