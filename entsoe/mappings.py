@@ -46,10 +46,12 @@ class Area(enum.Enum):
         return self.value
 
     # List taken directly from the API Docs
+    # https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html#_areass
     DE_50HZ =       '10YDE-VE-------2', '50Hertz CA, DE(50HzT) BZA',                    'Europe/Berlin',
     AL =            '10YAL-KESH-----5', 'Albania, OST BZ / CA / MBA',                   'Europe/Tirane',
     DE_AMPRION =    '10YDE-RWENET---I', 'Amprion CA',                                   'Europe/Berlin',
     AT =            '10YAT-APG------L', 'Austria, APG BZ / CA / MBA',                   'Europe/Vienna',
+    BELARUS =       'BY',               'Belarus',                                      'Europe/Minsk',
     BY =            '10Y1001A1001A51S', 'Belarus BZ / CA / MBA',                        'Europe/Minsk',
     BE =            '10YBE----------2', 'Belgium, Elia BZ / CA / MBA',                  'Europe/Brussels',
     BA =            '10YBA-JPCC-----D', 'Bosnia Herzegovina, NOS BiH BZ / CA / MBA',    'Europe/Sarajevo',
@@ -69,6 +71,9 @@ class Area(enum.Enum):
     FI =            '10YFI-1--------U', 'Finland, Fingrid BZ / CA / MBA',               'Europe/Helsinki',
     MK =            '10YMK-MEPSO----8', 'Former Yugoslav Republic of Macedonia, MEPSO BZ / CA / MBA', 'Europe/Skopje',
     FR =            '10YFR-RTE------C', 'France, RTE BZ / CA / MBA',                    'Europe/Paris',
+    GB_ELECLINK =   '11Y0-0000-0265-K', 'GB(ElecLink) BZN',                             'Europe/London',
+    GB_IFA =        '10Y1001C--00098F', 'GB(IFA) BZN',                                  'Europe/London',
+    GB_IFA2 =       '17Y0000009369493', 'GB(IFA2) BZ',                                  'Europe/London',
     DE =            '10Y1001A1001A83F', 'Germany',                                      'Europe/Berlin'
     GR =            '10YGR-HTSO-----Y', 'Greece, IPTO BZ / CA/ MBA',                    'Europe/Athens',
     HU =            '10YHU-MAVIR----U', 'Hungary, MAVIR CA / BZ / MBA',                 'Europe/Budapest',
@@ -96,6 +101,7 @@ class Area(enum.Enum):
     IT_SARD =       '10Y1001A1001A74G', 'IT-Sardinia BZ',                               'Europe/Rome',
     IT_SICI =       '10Y1001A1001A75E', 'IT-Sicily BZ',                                 'Europe/Rome',
     IT_SUD =        '10Y1001A1001A788', 'IT-South BZ',                                  'Europe/Rome',
+    IT_CALABRIA =   '10Y1001C--00096J', 'IT-Calabria BZN',                              'Europe/Rome',
     RU_KGD =        '10Y1001A1001A50U', 'Kaliningrad BZ / CA / MBA',                    'Europe/Kaliningrad',
     LV =            '10YLV-1001A00074', 'Latvia, AST BZ / CA / MBA',                    'Europe/Riga',
     LT =            '10YLT-1001A0008Q', 'Lithuania, Litgrid BZ / CA / MBA',             'Europe/Vilnius',
@@ -103,6 +109,7 @@ class Area(enum.Enum):
     MT =            '10Y1001A1001A93C', 'Malta, Malta BZ / CA / MBA',                   'Europe/Malta',
     ME =            '10YCS-CG-TSO---S', 'Montenegro, CGES BZ / CA / MBA',               'Europe/Podgorica',
     GB =            '10YGB----------A', 'National Grid BZ / CA/ MBA',                   'Europe/London',
+    UK =            'GB',               'Great Britain CTY',                            'Europe/London',
     NL =            '10YNL----------L', 'Netherlands, TenneT NL BZ / CA/ MBA',          'Europe/Amsterdam',
     NO_1 =          '10YNO-1--------2', 'NO1 BZ / MBA',                                 'Europe/Oslo',
     NO_2 =          '10YNO-2--------T', 'NO2 BZ / MBA',                                 'Europe/Oslo',
@@ -116,6 +123,7 @@ class Area(enum.Enum):
     MD =            '10Y1001A1001A990', 'Republic of Moldova, Moldelectica BZ/CA/MBA',  'Europe/Chisinau',
     RO =            '10YRO-TEL------P', 'Romania, Transelectrica BZ / CA/ MBA',         'Europe/Bucharest',
     RU =            '10Y1001A1001A49F', 'Russia BZ / CA / MBA',                         'Europe/Moscow',
+    RU_FED =        'RU',               'Russian Federation',                           'Europe/Moscow',
     SE_1 =          '10Y1001A1001A44P', 'SE1 BZ / MBA',                                 'Europe/Stockholm',
     SE_2 =          '10Y1001A1001A45N', 'SE2 BZ / MBA',                                 'Europe/Stockholm',
     SE_3 =          '10Y1001A1001A46L', 'SE3 BZ / MBA',                                 'Europe/Stockholm',
@@ -129,6 +137,7 @@ class Area(enum.Enum):
     CH =            '10YCH-SWISSGRIDZ', 'Switzerland, Swissgrid BZ / CA / MBA',         'Europe/Zurich',
     DE_TENNET =     '10YDE-EON------1', 'TenneT GER CA',                                'Europe/Berlin',
     DE_TRANSNET =   '10YDE-ENBW-----N', 'TransnetBW CA',                                'Europe/Berlin',
+    TURKEY =        'TR',               'Turkey',                                       'Europe/Istanbul',
     TR =            '10YTR-TEIAS----W', 'Turkey BZ / CA / MBA',                         'Europe/Istanbul',
     UA =            '10Y1001C--00003F', 'Ukraine, Ukraine BZ, MBA',                     'Europe/Kiev',
     UA_DOBTPP =     '10Y1001A1001A869', 'Ukraine-DobTPP CTA',                           'Europe/Kiev',
@@ -351,6 +360,8 @@ COUNTRY_NEIGHBOURS = {
 
 CA_NEIGHBOURS = COUNTRY_NEIGHBOURS.copy()
 CA_NEIGHBOURS.update({
+    'AT': ['CH', 'CZ', 'DE_AMPRION', 'DE_TENNET', 'DE_TRANSNET', 'HU', 'IT', 'SI'],
+    'BE': ['DE_AMPRION', 'FR', 'LU', 'NL', 'GB'],
     'DK_CA': ['DE_50HZ', 'DE_TENNET', 'NL', 'NO', 'SE'],
     'DE_50HZ': ['CZ', 'DK_CA', 'PL'],
     'DE_AMPRION': ['BE', 'CH', 'FR', 'LU', 'NL'],
