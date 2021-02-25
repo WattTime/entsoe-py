@@ -325,3 +325,51 @@ NEIGHBOURS = {
     'IT_SICI': ['IT_ROSN', 'MT'],
     'MT': ['IT_SICI']
 }
+
+# neighbouring countries that have cross border flows
+COUNTRY_NEIGHBOURS = {
+    'AT': ['CZ', 'DE', 'HU', 'IT', 'SI', 'CH'],
+    'BE': ['FR', 'DE', 'LU', 'NL', 'UK'],
+    'BA': ['HR', 'ME', 'RS'],
+    'BG': ['GR', 'MK', 'RO', 'RS', 'TR'],
+    'HR': ['BA', 'HU', 'RS', 'SI'],
+    'CZ': ['AT', 'DE', 'PL', 'SK'],
+    'DK': ['DE', 'NL', 'NO', 'SE'],
+    'EE': ['FI', 'LV', 'RU'],
+    'FI': ['EE', 'NO', 'RU', 'SE'],
+    'FR': ['BE', 'DE', 'IT', 'ES', 'CH', 'UK'],
+    'GE': ['AM', 'AZ', 'RU', 'TR'],
+    'DE': ['AT', 'BE', 'CZ', 'DK', 'FR', 'LU', 'NL', 'NO', 'PL', 'SE', 'CH'],
+    'GR': ['AL', 'BG', 'IT', 'MK', 'TR'],
+    'HU': ['AT', 'HR', 'RO', 'RS', 'SK', 'UA'],
+    'IE': ['UK'],
+    'IT': ['AT', 'FR', 'GR', 'MT', 'ME', 'SI', 'CH'],
+    'LV': ['EE', 'LT', 'RU'],
+    'LT': ['BY', 'LV', 'PL', 'RU', 'SE'],
+    'ME': ['AL', 'BA', 'IT', 'XK', 'RS'],
+    'NL': ['BE', 'DK', 'DE', 'NO', 'UK'],
+    'NO': ['DK', 'FI', 'DE', 'NL', 'SE'],
+    'PL': ['CZ', 'DE', 'LT', 'SK', 'SE', 'UA'],
+    'PT': ['ES'],
+    'RO': ['BG', 'HU', 'MD', 'RS', 'UA'],
+    'RU': ['EE', 'FI', 'GE', 'LV', 'LT', 'UA'],
+    'RS': ['AL', 'BA', 'BG', 'HR', 'HU', 'XK', 'MK', 'ME', 'RO'],
+    'SK': ['CZ', 'HU', 'PL', 'UA'],
+    'SI': ['AT', 'HR', 'IT'],
+    'ES': ['FR', 'PT'],
+    'SE': ['DK', 'FI', 'DE', 'LT', 'NO', 'PL'],
+    'CH': ['AT', 'FR', 'DE', 'IT'],
+    'UK': ['BE', 'FR', 'IE', 'NL']
+}
+
+CA_NEIGHBOURS = {
+    'AT': ['CH', 'CZ', 'DE_AMPRION', 'DE_TENNET', 'DE_TRANSNET', 'HU', 'IT', 'SI'],
+    'BE': ['DE_AMPRION', 'FR', 'LU', 'NL', 'GB'],
+    'DK_CA': ['DE_50HZ', 'DE_TENNET', 'NL', 'NO', 'SE'],
+    'DE_50HZ': ['CZ', 'DK_CA', 'PL'],
+    'DE_AMPRION': ['BE', 'CH', 'FR', 'LU', 'NL'],
+    'DE_TENNET': ['AT', 'CZ', 'DK_CA', 'NL', 'NO', 'SE'],
+    'DE_TRANSNET': ['AT', 'CH', 'FR']
+}
+
+ALL_NEIGHBOURS = {**COUNTRY_NEIGHBOURS, **CA_NEIGHBOURS}
