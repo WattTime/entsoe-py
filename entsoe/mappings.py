@@ -344,7 +344,7 @@ COUNTRY_NEIGHBOURS = {
     'IE': ['UK'],
     'IT': ['AT', 'FR', 'GR', 'MT', 'ME', 'SI', 'CH'],
     'LV': ['EE', 'LT', 'RU'],
-    'LT': ['BY', 'LV', 'PL', 'RU-KGD', 'SE'],
+    'LT': ['BY', 'LV', 'PL', 'RU_KGD', 'SE'],
     'ME': ['AL', 'BA', 'IT', 'RS'], #'XK'
     'NL': ['BE', 'DK', 'DE', 'NO', 'GB'],
     'NO': ['DK', 'FI', 'DE', 'NL', 'SE'],
