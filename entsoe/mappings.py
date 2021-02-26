@@ -135,7 +135,6 @@ class Area(enum.Enum):
     UA_BEI =        '10YUA-WEPS-----0', 'Ukraine BEI CTA',                              'Europe/Kiev',
     UA_IPS =        '10Y1001C--000182', 'Ukraine IPS CTA',                              'Europe/Kiev'
 
-
 PSRTYPE_MAPPINGS = {
     'A03': 'Mixed',
     'A04': 'Generation',
@@ -332,15 +331,15 @@ COUNTRY_NEIGHBOURS = {
     'IE': ['GB'],
     'IT': ['AT', 'FR', 'GR', 'MT', 'ME', 'SI', 'CH'],
     'LV': ['EE', 'LT', 'RU'],
-    'LT': ['BY', 'LV', 'PL', 'RU', 'SE'],
-    'ME': ['AL', 'BA', 'IT', 'XK', 'RS'],
+    'LT': ['BY', 'LV', 'PL', 'RU-KGD', 'SE'],
+    'ME': ['AL', 'BA', 'IT', 'RS'], #'XK'
     'NL': ['BE', 'DK', 'DE', 'NO', 'GB'],
     'NO': ['DK', 'FI', 'DE', 'NL', 'SE'],
     'PL': ['CZ', 'DE', 'LT', 'SK', 'SE', 'UA'],
     'PT': ['ES'],
     'RO': ['BG', 'HU', 'MD', 'RS', 'UA'],
     'RU': ['EE', 'FI', 'GE', 'LV', 'LT', 'UA'],
-    'RS': ['AL', 'BA', 'BG', 'HR', 'HU', 'XK', 'MK', 'ME', 'RO'],
+    'RS': ['AL', 'BA', 'BG', 'HR', 'HU', 'MK', 'ME', 'RO'], #'XK'
     'SK': ['CZ', 'HU', 'PL', 'UA'],
     'SI': ['AT', 'HR', 'IT'],
     'ES': ['FR', 'PT'],
