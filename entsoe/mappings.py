@@ -358,7 +358,9 @@ COUNTRY_NEIGHBOURS = {
     'ES': ['FR', 'PT'],
     'SE': ['DK', 'FI', 'DE', 'LT', 'NO', 'PL'],
     'CH': ['AT', 'FR', 'DE', 'IT'],
-    'UK': ['BE', 'FR', 'IE', 'NL']
+    'UK': ['BE', 'FR', 'IE', 'NL'],
+    'GB': ['BE', 'FR', 'IE', 'GB_NIR', 'NL'],
+    'GB_NIR': ['GB'],
 }
 
 CA_NEIGHBOURS = {
