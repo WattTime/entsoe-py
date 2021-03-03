@@ -326,9 +326,10 @@ NEIGHBOURS = {
 }
 
 # neighbouring countries that have cross border flows
+# we treat GB and GB_NIR as countries
 COUNTRY_NEIGHBOURS = {
     'AT': ['CZ', 'DE', 'HU', 'IT', 'SI', 'CH'],
-    'BE': ['FR', 'DE', 'LU', 'NL', 'UK'],
+    'BE': ['FR', 'DE', 'LU', 'NL', 'GB'],
     'BA': ['HR', 'ME', 'RS'],
     'BG': ['GR', 'MK', 'RO', 'RS', 'TR'],
     'HR': ['BA', 'HU', 'RS', 'SI'],
@@ -336,12 +337,12 @@ COUNTRY_NEIGHBOURS = {
     'DK': ['DE', 'NL', 'NO', 'SE'],
     'EE': ['FI', 'LV', 'RU'],
     'FI': ['EE', 'NO', 'RU', 'SE'],
-    'FR': ['BE', 'DE', 'IT', 'ES', 'CH', 'UK'],
+    'FR': ['BE', 'DE', 'IT', 'ES', 'CH', 'GB'],
     'GE': ['AM', 'AZ', 'RU', 'TR'],
     'DE': ['AT', 'BE', 'CZ', 'DK', 'FR', 'LU', 'NL', 'NO', 'PL', 'SE', 'CH'],
     'GR': ['AL', 'BG', 'IT', 'MK', 'TR'],
     'HU': ['AT', 'HR', 'RO', 'RS', 'SK', 'UA'],
-    'IE': ['UK'],
+    'IE': ['GB_NIR', 'GB'],
     'IT': ['AT', 'FR', 'GR', 'MT', 'ME', 'SI', 'CH'],
     'LV': ['EE', 'LT', 'RU'],
     'LT': ['BY', 'LV', 'PL', 'RU_KGD', 'SE'],
@@ -358,9 +359,9 @@ COUNTRY_NEIGHBOURS = {
     'ES': ['FR', 'PT'],
     'SE': ['DK', 'FI', 'DE', 'LT', 'NO', 'PL'],
     'CH': ['AT', 'FR', 'DE', 'IT'],
-    'UK': ['BE', 'FR', 'IE', 'NL'],
-    'GB': ['BE', 'FR', 'IE', 'GB_NIR', 'NL'],
-    'GB_NIR': ['GB'],
+    'GB': ['BE', 'FR', 'IE', 'NL', 'GB_NIR'],
+    'GB_NIR': ['IE', 'GB']
+    # 'UK': ['BE', 'FR', 'IE', 'NL']
 }
 
 CA_NEIGHBOURS = {
