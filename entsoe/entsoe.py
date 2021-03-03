@@ -838,14 +838,15 @@ def year_limited(func):
             raise NoMatchingDataError
         
         # fuel mix has a multicolumn index, sometimes inconsistently
-        all_mi = all(isinstance(f.columns, pd.MultiIndex) for f in frames)
-        any_mi = any(isinstance(f.columns, pd.MultiIndex) for f in frames)
-        if any_mi & (not all_mi):
-            for f in frames:
-                if not isinstance(f.columns, pd.MultiIndex):
-                    mi = pd.MultiIndex.from_product(
-                        [list(f.columns), ['Actual Aggregated']])
-                    f.columns = mi
+        if isinstance(frames[0], pd.DataFrame):
+            all_mi = all(isinstance(f.columns, pd.MultiIndex) for f in frames)
+            any_mi = any(isinstance(f.columns, pd.MultiIndex) for f in frames)
+            if any_mi & (not all_mi):
+                for f in frames:
+                    if not isinstance(f.columns, pd.MultiIndex):
+                        mi = pd.MultiIndex.from_product(
+                            [list(f.columns), ['Actual Aggregated']])
+                        f.columns = mi
 
         df = pd.concat(frames, sort=True)
         df = df.loc[~df.index.duplicated(keep='first')]
